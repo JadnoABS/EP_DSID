@@ -33,7 +33,7 @@ public class Implementation extends userGrpc.userImplBase {
     @Override
     public void geometricVolume(Solid solid, StreamObserver<Volume> response) {
 
-        float volume = solid.getHeight() * solid.getLength() * solid.getWidth();
+        double volume = solid.getHeight() * solid.getLength() * solid.getWidth();
 
         Volume.Builder result = Volume.newBuilder();
         result.setVolume(volume);
@@ -44,11 +44,11 @@ public class Implementation extends userGrpc.userImplBase {
 
     @Override
     public void geometricSurface(Solid solid, StreamObserver<Area> response) {
-        float height = solid.getHeight();
-        float width = solid.getWidth();
-        float length = solid.getLength();
+        double height = solid.getHeight();
+        double width = solid.getWidth();
+        double length = solid.getLength();
 
-        float surf = (height * width * 2) + (height * length * 2) + (width * length * 2);
+        double surf = (height * width * 2) + (height * length * 2) + (width * length * 2);
 
         Area.Builder result = Area.newBuilder();
         result.setArea(surf);
@@ -136,14 +136,54 @@ public class Implementation extends userGrpc.userImplBase {
 
 
     @Override
-    public void secondDegreeDerivative(Polynome polynome, StreamObserver<Polynome> response) {
+    public void polynomeDerivative(Polynome polynome, StreamObserver<Polynome> response) {
+
+        String str = polynome.getPolynome();
+        List<Integer> coeffs = GetCoefficients(str, false);
+
+        List<Integer> newCoeffs = new ArrayList<Integer>();
+        for(int i = 1; i < coeffs.size(); i+=2) {
+            newCoeffs.add(coeffs.get(i-1) * coeffs.get(i));
+            newCoeffs.add(coeffs.get(i) - 1);
+        }
+
+        String result = new String();
+        for(int i = 1; i < newCoeffs.size(); i+=2) {
+            if(newCoeffs.get(i) == 0){
+                if(newCoeffs.get(i-1) < 0){
+                    result.concat(String.format("%s",
+                            Integer.toString(newCoeffs.get(i-1))
+                    ));
+                } else {
+                    result.concat(String.format("+%s",
+                            Integer.toString(newCoeffs.get(i-1))
+                    ));
+                }
+            } else {
+                if(newCoeffs.get(i) < 0) {
+                    result.concat(String.format("%s*x^%s",
+                            Integer.toString(newCoeffs.get(i-1)),
+                            Integer.toString(newCoeffs.get(i))
+                    ));
+                } else {
+                    result.concat(String.format("+%s*x^%s",
+                            Integer.toString(newCoeffs.get(i-1)),
+                            Integer.toString(newCoeffs.get(i))
+                    ));
+                }
+            }
+        }
+
+
+        response.onNext(Polynome.newBuilder()
+                .setPolynome(result)
+                .build()
+        );
+
+        response.onCompleted();
 
     }
 
-    @Override
-    public void thirdDegreeDerivative(Polynome polynome, StreamObserver<Polynome> response) {
-
-    }
 
     private List<Integer> GetCoefficients(String eq, boolean withoutExp) {
         String result;
@@ -153,7 +193,10 @@ public class Implementation extends userGrpc.userImplBase {
         List<Integer> coeff = new ArrayList<Integer>();
 
         if(withoutExp) { // Retorna lista apenas com coeficientes
-            coeff.add(Integer.parseInt(coeffAndExp[0]));
+            if(coeffAndExp[0].isEmpty())
+                coeff.add(1);
+            else
+                coeff.add(Integer.parseInt(coeffAndExp[0]));
             if(coeffAndExp.length >= 3)
                 coeff.add(Integer.parseInt(coeffAndExp[2]));
             if(coeffAndExp.length >= 5)
@@ -166,7 +209,10 @@ public class Implementation extends userGrpc.userImplBase {
 
         // Retorna lista com os coeficientes e os expoentes
         for(String str : coeffAndExp) {
-            coeff.add(Integer.parseInt(str));
+            if(str.isEmpty())
+                coeff.add(1);
+            else
+                coeff.add(Integer.parseInt(str));
         }
         return coeff;
 

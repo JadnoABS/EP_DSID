@@ -4,25 +4,25 @@
 package generated;
 
 /**
- * Protobuf type {@code proto.Solid}
+ * Protobuf type {@code proto.Area}
  */
-public  final class Solid extends
+public  final class Area extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:proto.Solid)
-    SolidOrBuilder {
+    // @@protoc_insertion_point(message_implements:proto.Area)
+    AreaOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use Solid.newBuilder() to construct.
-  private Solid(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Area.newBuilder() to construct.
+  private Area(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Solid() {
+  private Area() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new Solid();
+    return new Area();
   }
 
   @java.lang.Override
@@ -30,7 +30,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private Solid(
+  private Area(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -50,17 +50,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 9: {
 
-            height_ = input.readDouble();
-            break;
-          }
-          case 17: {
-
-            length_ = input.readDouble();
-            break;
-          }
-          case 25: {
-
-            width_ = input.readDouble();
+            area_ = input.readDouble();
             break;
           }
           default: {
@@ -84,45 +74,25 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return generated.Proto.internal_static_proto_Solid_descriptor;
+    return generated.Proto.internal_static_proto_Area_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return generated.Proto.internal_static_proto_Solid_fieldAccessorTable
+    return generated.Proto.internal_static_proto_Area_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            generated.Solid.class, generated.Solid.Builder.class);
+            generated.Area.class, generated.Area.Builder.class);
   }
 
-  public static final int HEIGHT_FIELD_NUMBER = 1;
-  private double height_;
+  public static final int AREA_FIELD_NUMBER = 1;
+  private double area_;
   /**
-   * <code>double height = 1;</code>
-   * @return The height.
+   * <code>double area = 1;</code>
+   * @return The area.
    */
-  public double getHeight() {
-    return height_;
-  }
-
-  public static final int LENGTH_FIELD_NUMBER = 2;
-  private double length_;
-  /**
-   * <code>double length = 2;</code>
-   * @return The length.
-   */
-  public double getLength() {
-    return length_;
-  }
-
-  public static final int WIDTH_FIELD_NUMBER = 3;
-  private double width_;
-  /**
-   * <code>double width = 3;</code>
-   * @return The width.
-   */
-  public double getWidth() {
-    return width_;
+  public double getArea() {
+    return area_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -139,14 +109,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (height_ != 0D) {
-      output.writeDouble(1, height_);
-    }
-    if (length_ != 0D) {
-      output.writeDouble(2, length_);
-    }
-    if (width_ != 0D) {
-      output.writeDouble(3, width_);
+    if (area_ != 0D) {
+      output.writeDouble(1, area_);
     }
     unknownFields.writeTo(output);
   }
@@ -157,17 +121,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (height_ != 0D) {
+    if (area_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(1, height_);
-    }
-    if (length_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(2, length_);
-    }
-    if (width_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(3, width_);
+        .computeDoubleSize(1, area_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -179,20 +135,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof generated.Solid)) {
+    if (!(obj instanceof generated.Area)) {
       return super.equals(obj);
     }
-    generated.Solid other = (generated.Solid) obj;
+    generated.Area other = (generated.Area) obj;
 
-    if (java.lang.Double.doubleToLongBits(getHeight())
+    if (java.lang.Double.doubleToLongBits(getArea())
         != java.lang.Double.doubleToLongBits(
-            other.getHeight())) return false;
-    if (java.lang.Double.doubleToLongBits(getLength())
-        != java.lang.Double.doubleToLongBits(
-            other.getLength())) return false;
-    if (java.lang.Double.doubleToLongBits(getWidth())
-        != java.lang.Double.doubleToLongBits(
-            other.getWidth())) return false;
+            other.getArea())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -204,83 +154,77 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
+    hash = (37 * hash) + AREA_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getHeight()));
-    hash = (37 * hash) + LENGTH_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getLength()));
-    hash = (37 * hash) + WIDTH_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getWidth()));
+        java.lang.Double.doubleToLongBits(getArea()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static generated.Solid parseFrom(byte[] data)
+  public static generated.Area parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static generated.Solid parseFrom(java.io.InputStream input)
+  public static generated.Area parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static generated.Solid parseDelimitedFrom(java.io.InputStream input)
+  public static generated.Area parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static generated.Solid parseDelimitedFrom(
+  public static generated.Area parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static generated.Solid parseFrom(
+  public static generated.Area parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -293,7 +237,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(generated.Solid prototype) {
+  public static Builder newBuilder(generated.Area prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -309,26 +253,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code proto.Solid}
+   * Protobuf type {@code proto.Area}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:proto.Solid)
-      generated.SolidOrBuilder {
+      // @@protoc_insertion_point(builder_implements:proto.Area)
+      generated.AreaOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return generated.Proto.internal_static_proto_Solid_descriptor;
+      return generated.Proto.internal_static_proto_Area_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return generated.Proto.internal_static_proto_Solid_fieldAccessorTable
+      return generated.Proto.internal_static_proto_Area_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              generated.Solid.class, generated.Solid.Builder.class);
+              generated.Area.class, generated.Area.Builder.class);
     }
 
-    // Construct using generated.Solid.newBuilder()
+    // Construct using generated.Area.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -346,11 +290,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      height_ = 0D;
-
-      length_ = 0D;
-
-      width_ = 0D;
+      area_ = 0D;
 
       return this;
     }
@@ -358,17 +298,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return generated.Proto.internal_static_proto_Solid_descriptor;
+      return generated.Proto.internal_static_proto_Area_descriptor;
     }
 
     @java.lang.Override
-    public generated.Solid getDefaultInstanceForType() {
-      return generated.Solid.getDefaultInstance();
+    public generated.Area getDefaultInstanceForType() {
+      return generated.Area.getDefaultInstance();
     }
 
     @java.lang.Override
-    public generated.Solid build() {
-      generated.Solid result = buildPartial();
+    public generated.Area build() {
+      generated.Area result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -376,11 +316,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public generated.Solid buildPartial() {
-      generated.Solid result = new generated.Solid(this);
-      result.height_ = height_;
-      result.length_ = length_;
-      result.width_ = width_;
+    public generated.Area buildPartial() {
+      generated.Area result = new generated.Area(this);
+      result.area_ = area_;
       onBuilt();
       return result;
     }
@@ -419,24 +357,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof generated.Solid) {
-        return mergeFrom((generated.Solid)other);
+      if (other instanceof generated.Area) {
+        return mergeFrom((generated.Area)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(generated.Solid other) {
-      if (other == generated.Solid.getDefaultInstance()) return this;
-      if (other.getHeight() != 0D) {
-        setHeight(other.getHeight());
-      }
-      if (other.getLength() != 0D) {
-        setLength(other.getLength());
-      }
-      if (other.getWidth() != 0D) {
-        setWidth(other.getWidth());
+    public Builder mergeFrom(generated.Area other) {
+      if (other == generated.Area.getDefaultInstance()) return this;
+      if (other.getArea() != 0D) {
+        setArea(other.getArea());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -453,11 +385,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      generated.Solid parsedMessage = null;
+      generated.Area parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (generated.Solid) e.getUnfinishedMessage();
+        parsedMessage = (generated.Area) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -467,92 +399,32 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private double height_ ;
+    private double area_ ;
     /**
-     * <code>double height = 1;</code>
-     * @return The height.
+     * <code>double area = 1;</code>
+     * @return The area.
      */
-    public double getHeight() {
-      return height_;
+    public double getArea() {
+      return area_;
     }
     /**
-     * <code>double height = 1;</code>
-     * @param value The height to set.
+     * <code>double area = 1;</code>
+     * @param value The area to set.
      * @return This builder for chaining.
      */
-    public Builder setHeight(double value) {
+    public Builder setArea(double value) {
       
-      height_ = value;
+      area_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double height = 1;</code>
+     * <code>double area = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearHeight() {
+    public Builder clearArea() {
       
-      height_ = 0D;
-      onChanged();
-      return this;
-    }
-
-    private double length_ ;
-    /**
-     * <code>double length = 2;</code>
-     * @return The length.
-     */
-    public double getLength() {
-      return length_;
-    }
-    /**
-     * <code>double length = 2;</code>
-     * @param value The length to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLength(double value) {
-      
-      length_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>double length = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearLength() {
-      
-      length_ = 0D;
-      onChanged();
-      return this;
-    }
-
-    private double width_ ;
-    /**
-     * <code>double width = 3;</code>
-     * @return The width.
-     */
-    public double getWidth() {
-      return width_;
-    }
-    /**
-     * <code>double width = 3;</code>
-     * @param value The width to set.
-     * @return This builder for chaining.
-     */
-    public Builder setWidth(double value) {
-      
-      width_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>double width = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearWidth() {
-      
-      width_ = 0D;
+      area_ = 0D;
       onChanged();
       return this;
     }
@@ -569,41 +441,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:proto.Solid)
+    // @@protoc_insertion_point(builder_scope:proto.Area)
   }
 
-  // @@protoc_insertion_point(class_scope:proto.Solid)
-  private static final generated.Solid DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:proto.Area)
+  private static final generated.Area DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new generated.Solid();
+    DEFAULT_INSTANCE = new generated.Area();
   }
 
-  public static generated.Solid getDefaultInstance() {
+  public static generated.Area getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Solid>
-      PARSER = new com.google.protobuf.AbstractParser<Solid>() {
+  private static final com.google.protobuf.Parser<Area>
+      PARSER = new com.google.protobuf.AbstractParser<Area>() {
     @java.lang.Override
-    public Solid parsePartialFrom(
+    public Area parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Solid(input, extensionRegistry);
+      return new Area(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<Solid> parser() {
+  public static com.google.protobuf.Parser<Area> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Solid> getParserForType() {
+  public com.google.protobuf.Parser<Area> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public generated.Solid getDefaultInstanceForType() {
+  public generated.Area getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
