@@ -1,64 +1,38 @@
-package service;
-
-
-import java.util.Arrays;
+package rpc;
+import jakarta.jws.WebService;
 import java.util.List;
 import java.util.ArrayList;
-import java.lang.Math;
-import generated.userGrpc;
-import generated.Area;
-import generated.Empty;
-import generated.IntValue;
-import generated.Polynome;
-import generated.Solid;
-import generated.Volume;
-import generated.ThirdDegreeRoot;
-import generated.SecondDegreeRoot;
 
-import io.grpc.stub.StreamObserver;
-
-public class Implementation extends userGrpc.userImplBase {
-
-    // Implementacao da logica
-
+//rpc.Service Implementation
+@WebService(endpointInterface = "rpc.Service")
+public class Implementation implements Service {
     @Override
-    public void emptyReq(Empty request, StreamObserver<Empty> response) { // Parametros e retorno vazio
+    public void emptyReq() { // Parametros e retorno vazio
         System.out.println("EMPTY REQUEST");
-        response.onCompleted();
     }
 
     @Override
-    public void geometricVolume(Solid solid, StreamObserver<Volume> response) { // Calcula volume de um solido
+    public Double geometricVolume(Double[] solid) { // Calcula volume de um solido
+        System.out.println(solid.length);
 
-        double volume = solid.getHeight() * solid.getLength() * solid.getWidth();
-
-        Volume.Builder result = Volume.newBuilder();
-        result.setVolume(volume);
-
-        response.onNext(result.build());
-        response.onCompleted();
+        double volume = solid[0] * solid[1] * solid[2];
+        return volume;
     }
 
     @Override
-    public void geometricSurface(Solid solid, StreamObserver<Area> response) { // Calcula area superficial de um solido
-        double height = solid.getHeight();
-        double width = solid.getWidth();
-        double length = solid.getLength();
+    public Double geometricSurface(Double[] solid) { // Calcula area superficial de um solido
+        double height = solid[0];
+        double width = solid[1];
+        double length = solid[2];
 
         double surf = (height * width * 2) + (height * length * 2) + (width * length * 2);
-
-        Area.Builder result = Area.newBuilder();
-        result.setArea(surf);
-
-        response.onNext(result.build());
-        response.onCompleted();
+        return surf;
     }
 
     @Override
-    public void secondDegreeSolve(Polynome polynome, StreamObserver<SecondDegreeRoot> response) { // Resolve equacoes de segundo grau
+    public Double[] secondDegreeSolve(String polynome) { // Resolve equacoes de segundo grau
 
-        String str = polynome.getPolynome();
-        List<Integer> coeff = GetCoefficients(str, true);
+        ArrayList<Integer> coeff = GetCoefficients(polynome, true);
 
         int a = coeff.get(0);
         int b = 0; int c = 0;
@@ -66,20 +40,24 @@ public class Implementation extends userGrpc.userImplBase {
             b = coeff.get(1);
         if(coeff.size() >= 3)
             c = coeff.get(2);
+        System.out.println(a + " " + b + " " + c);
 
-        double delta = b*b - 4 * a * c;
-        double x1 = (-1 * b + Math.sqrt(delta)) / (2 * a);
-        double x2 = (-1 * b - Math.sqrt(delta)) / (2 * a);
+        double delta = (b*b) - (4 * a * c);
+        double x1 = ((-1 * b) + Math.sqrt(delta)) / (2 * a);
+        double x2 = ((-1 * b) - Math.sqrt(delta)) / (2 * a);
 
-        response.onNext(SecondDegreeRoot.newBuilder().setX1(x1).setX2(x2).build());
-        response.onCompleted();
+        System.out.println(delta + " " + x1 + " " + x2);
+
+        Double[] result = new Double[2];
+        result[0] = x1;
+        result[1] = x2;
+        return result;
     }
 
     @Override
     // Retirado de https://www.blogcyberini.com/2017/09/algoritmo-equacao-terceiro-grau.html
-    public void thirdDegreeSolve(Polynome polynome, StreamObserver<ThirdDegreeRoot> response) { // Resolve equacoes de terceiro grau
-        String str = polynome.getPolynome();
-        List<Integer> coeff = GetCoefficients(str, true);
+    public String[] thirdDegreeSolve(String polynome) { // Resolve equacoes de terceiro grau
+        ArrayList<Integer> coeff = GetCoefficients(polynome, true);
 
         int a = coeff.get(0);
         int b = 0; int c = 0; int d = 0;
@@ -128,16 +106,10 @@ public class Implementation extends userGrpc.userImplBase {
             roots[2] = String.valueOf(2.0 * Math.cbrt(rho) * Math.cos((theta + 4.0 * Math.PI) / 3.0) - A / 3.0);
         }
 
-        response.onNext(ThirdDegreeRoot.newBuilder()
-                .setX1(roots[0])
-                .setX2(roots[1])
-                .setX3(roots[2])
-                .build()
-        );
+        System.out.println(roots[0] + " " + roots[1] + " " + roots[2]);
 
-        response.onCompleted();
+        return roots;
     }
-
 
     private static String formatComplexResult(double realPart, double imPart) {
         if (realPart == 0 && imPart == 0) {
@@ -157,62 +129,69 @@ public class Implementation extends userGrpc.userImplBase {
         return number;
     }
 
+
     @Override
-    public void polynomeDerivative(Polynome polynome, StreamObserver<Polynome> response) { // Calcula derivada de polinomios
+    public String polynomeDerivative(String polynome) { // Calcula a derivada de um polinomio
 
-        String str = polynome.getPolynome();
-        List<Integer> coeffs = GetCoefficients(str, false);
+        System.out.println(polynome);
+        ArrayList<Integer> coeffs = GetCoefficients(polynome, false);
 
-        List<Integer> newCoeffs = new ArrayList<Integer>();
+        ArrayList<Integer> newCoeffs = new ArrayList<Integer>();
+
         for(int i = 1; i < coeffs.size(); i+=2) {
             newCoeffs.add(coeffs.get(i-1) * coeffs.get(i));
             newCoeffs.add(coeffs.get(i) - 1);
         }
 
+        if(newCoeffs.isEmpty())
+            return "0";
+
+        for (int coef : newCoeffs){
+            System.out.println(coef);
+        }
+
         String result = new String();
-        for(int i = 1; i < newCoeffs.size(); i+=2) {
+        for(int i = 1; i <= newCoeffs.size(); i+=2) {
             if(newCoeffs.get(i) == 0){
-                if(newCoeffs.get(i-1) < 0){
-                    result.concat(String.format("%s",
-                            Integer.toString(newCoeffs.get(i-1))
+                if(newCoeffs.get(i-1) < 0 || i == 1){
+                    result = result.concat(String.format("%d",
+                            newCoeffs.get(i-1)
                     ));
                 } else {
-                    result.concat(String.format("+%s",
-                            Integer.toString(newCoeffs.get(i-1))
+                    result = result.concat(String.format("+%d",
+                            newCoeffs.get(i-1)
                     ));
                 }
             } else {
-                if(newCoeffs.get(i) < 0) {
-                    result.concat(String.format("%s*x^%s",
-                            Integer.toString(newCoeffs.get(i-1)),
-                            Integer.toString(newCoeffs.get(i))
+                if(newCoeffs.get(i) < 0 || i == 1) {
+                    result = result.concat(String.format("%dx^%d",
+                            newCoeffs.get(i-1),
+                            newCoeffs.get(i)
                     ));
                 } else {
-                    result.concat(String.format("+%s*x^%s",
-                            Integer.toString(newCoeffs.get(i-1)),
-                            Integer.toString(newCoeffs.get(i))
+                    System.out.println(String.format("+%dx^%d",
+                            newCoeffs.get(i-1),
+                            newCoeffs.get(i)
+                    ));
+                    result = result.concat(String.format("+%dx^%d",
+                            newCoeffs.get(i-1),
+                            newCoeffs.get(i)
                     ));
                 }
             }
         }
+        System.out.println(result);
 
-
-        response.onNext(Polynome.newBuilder()
-                .setPolynome(result)
-                .build()
-        );
-
-        response.onCompleted();
-
+        return result;
     }
 
 
-    private List<Integer> GetCoefficients(String eq, boolean withoutExp) {
+    private ArrayList<Integer> GetCoefficients(String eq, boolean withoutExp) {
         String result;
         result = eq.replaceAll("[^0-9\\-\\.]+", " ");
         result= result.replaceAll("-", " -");
         String[] coeffAndExp = result.split(" ");
-        List<Integer> coeff = new ArrayList<Integer>();
+        ArrayList<Integer> coeff = new ArrayList<Integer>();
 
         if(withoutExp) { // Retorna lista apenas com coeficientes
             if(coeffAndExp[0].isEmpty())
@@ -239,6 +218,4 @@ public class Implementation extends userGrpc.userImplBase {
         return coeff;
 
     }
-
-
 }

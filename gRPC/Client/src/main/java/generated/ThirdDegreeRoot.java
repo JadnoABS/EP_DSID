@@ -16,6 +16,9 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ThirdDegreeRoot() {
+    x1_ = "";
+    x2_ = "";
+    x3_ = "";
   }
 
   @java.lang.Override
@@ -48,19 +51,22 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 9: {
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            x1_ = input.readDouble();
+            x1_ = s;
             break;
           }
-          case 17: {
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            x2_ = input.readDouble();
+            x2_ = s;
             break;
           }
-          case 25: {
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            x3_ = input.readDouble();
+            x3_ = s;
             break;
           }
           default: {
@@ -96,33 +102,111 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int X1_FIELD_NUMBER = 1;
-  private double x1_;
+  private volatile java.lang.Object x1_;
   /**
-   * <code>double x1 = 1;</code>
+   * <code>string x1 = 1;</code>
    * @return The x1.
    */
-  public double getX1() {
-    return x1_;
+  public java.lang.String getX1() {
+    java.lang.Object ref = x1_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      x1_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string x1 = 1;</code>
+   * @return The bytes for x1.
+   */
+  public com.google.protobuf.ByteString
+      getX1Bytes() {
+    java.lang.Object ref = x1_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      x1_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int X2_FIELD_NUMBER = 2;
-  private double x2_;
+  private volatile java.lang.Object x2_;
   /**
-   * <code>double x2 = 2;</code>
+   * <code>string x2 = 2;</code>
    * @return The x2.
    */
-  public double getX2() {
-    return x2_;
+  public java.lang.String getX2() {
+    java.lang.Object ref = x2_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      x2_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string x2 = 2;</code>
+   * @return The bytes for x2.
+   */
+  public com.google.protobuf.ByteString
+      getX2Bytes() {
+    java.lang.Object ref = x2_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      x2_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int X3_FIELD_NUMBER = 3;
-  private double x3_;
+  private volatile java.lang.Object x3_;
   /**
-   * <code>double x3 = 3;</code>
+   * <code>string x3 = 3;</code>
    * @return The x3.
    */
-  public double getX3() {
-    return x3_;
+  public java.lang.String getX3() {
+    java.lang.Object ref = x3_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      x3_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string x3 = 3;</code>
+   * @return The bytes for x3.
+   */
+  public com.google.protobuf.ByteString
+      getX3Bytes() {
+    java.lang.Object ref = x3_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      x3_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -139,14 +223,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (x1_ != 0D) {
-      output.writeDouble(1, x1_);
+    if (!getX1Bytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, x1_);
     }
-    if (x2_ != 0D) {
-      output.writeDouble(2, x2_);
+    if (!getX2Bytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, x2_);
     }
-    if (x3_ != 0D) {
-      output.writeDouble(3, x3_);
+    if (!getX3Bytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, x3_);
     }
     unknownFields.writeTo(output);
   }
@@ -157,17 +241,14 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (x1_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(1, x1_);
+    if (!getX1Bytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, x1_);
     }
-    if (x2_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(2, x2_);
+    if (!getX2Bytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, x2_);
     }
-    if (x3_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(3, x3_);
+    if (!getX3Bytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, x3_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -184,15 +265,12 @@ private static final long serialVersionUID = 0L;
     }
     generated.ThirdDegreeRoot other = (generated.ThirdDegreeRoot) obj;
 
-    if (java.lang.Double.doubleToLongBits(getX1())
-        != java.lang.Double.doubleToLongBits(
-            other.getX1())) return false;
-    if (java.lang.Double.doubleToLongBits(getX2())
-        != java.lang.Double.doubleToLongBits(
-            other.getX2())) return false;
-    if (java.lang.Double.doubleToLongBits(getX3())
-        != java.lang.Double.doubleToLongBits(
-            other.getX3())) return false;
+    if (!getX1()
+        .equals(other.getX1())) return false;
+    if (!getX2()
+        .equals(other.getX2())) return false;
+    if (!getX3()
+        .equals(other.getX3())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -205,14 +283,11 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + X1_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getX1()));
+    hash = (53 * hash) + getX1().hashCode();
     hash = (37 * hash) + X2_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getX2()));
+    hash = (53 * hash) + getX2().hashCode();
     hash = (37 * hash) + X3_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getX3()));
+    hash = (53 * hash) + getX3().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -346,11 +421,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      x1_ = 0D;
+      x1_ = "";
 
-      x2_ = 0D;
+      x2_ = "";
 
-      x3_ = 0D;
+      x3_ = "";
 
       return this;
     }
@@ -429,14 +504,17 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(generated.ThirdDegreeRoot other) {
       if (other == generated.ThirdDegreeRoot.getDefaultInstance()) return this;
-      if (other.getX1() != 0D) {
-        setX1(other.getX1());
+      if (!other.getX1().isEmpty()) {
+        x1_ = other.x1_;
+        onChanged();
       }
-      if (other.getX2() != 0D) {
-        setX2(other.getX2());
+      if (!other.getX2().isEmpty()) {
+        x2_ = other.x2_;
+        onChanged();
       }
-      if (other.getX3() != 0D) {
-        setX3(other.getX3());
+      if (!other.getX3().isEmpty()) {
+        x3_ = other.x3_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -467,92 +545,230 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private double x1_ ;
+    private java.lang.Object x1_ = "";
     /**
-     * <code>double x1 = 1;</code>
+     * <code>string x1 = 1;</code>
      * @return The x1.
      */
-    public double getX1() {
-      return x1_;
+    public java.lang.String getX1() {
+      java.lang.Object ref = x1_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        x1_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>double x1 = 1;</code>
+     * <code>string x1 = 1;</code>
+     * @return The bytes for x1.
+     */
+    public com.google.protobuf.ByteString
+        getX1Bytes() {
+      java.lang.Object ref = x1_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        x1_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string x1 = 1;</code>
      * @param value The x1 to set.
      * @return This builder for chaining.
      */
-    public Builder setX1(double value) {
-      
+    public Builder setX1(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       x1_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double x1 = 1;</code>
+     * <code>string x1 = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearX1() {
       
-      x1_ = 0D;
+      x1_ = getDefaultInstance().getX1();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string x1 = 1;</code>
+     * @param value The bytes for x1 to set.
+     * @return This builder for chaining.
+     */
+    public Builder setX1Bytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      x1_ = value;
       onChanged();
       return this;
     }
 
-    private double x2_ ;
+    private java.lang.Object x2_ = "";
     /**
-     * <code>double x2 = 2;</code>
+     * <code>string x2 = 2;</code>
      * @return The x2.
      */
-    public double getX2() {
-      return x2_;
+    public java.lang.String getX2() {
+      java.lang.Object ref = x2_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        x2_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>double x2 = 2;</code>
+     * <code>string x2 = 2;</code>
+     * @return The bytes for x2.
+     */
+    public com.google.protobuf.ByteString
+        getX2Bytes() {
+      java.lang.Object ref = x2_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        x2_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string x2 = 2;</code>
      * @param value The x2 to set.
      * @return This builder for chaining.
      */
-    public Builder setX2(double value) {
-      
+    public Builder setX2(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       x2_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double x2 = 2;</code>
+     * <code>string x2 = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearX2() {
       
-      x2_ = 0D;
+      x2_ = getDefaultInstance().getX2();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string x2 = 2;</code>
+     * @param value The bytes for x2 to set.
+     * @return This builder for chaining.
+     */
+    public Builder setX2Bytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      x2_ = value;
       onChanged();
       return this;
     }
 
-    private double x3_ ;
+    private java.lang.Object x3_ = "";
     /**
-     * <code>double x3 = 3;</code>
+     * <code>string x3 = 3;</code>
      * @return The x3.
      */
-    public double getX3() {
-      return x3_;
+    public java.lang.String getX3() {
+      java.lang.Object ref = x3_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        x3_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>double x3 = 3;</code>
+     * <code>string x3 = 3;</code>
+     * @return The bytes for x3.
+     */
+    public com.google.protobuf.ByteString
+        getX3Bytes() {
+      java.lang.Object ref = x3_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        x3_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string x3 = 3;</code>
      * @param value The x3 to set.
      * @return This builder for chaining.
      */
-    public Builder setX3(double value) {
-      
+    public Builder setX3(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       x3_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double x3 = 3;</code>
+     * <code>string x3 = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearX3() {
       
-      x3_ = 0D;
+      x3_ = getDefaultInstance().getX3();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string x3 = 3;</code>
+     * @param value The bytes for x3 to set.
+     * @return This builder for chaining.
+     */
+    public Builder setX3Bytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      x3_ = value;
       onChanged();
       return this;
     }

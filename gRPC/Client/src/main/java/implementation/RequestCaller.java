@@ -32,50 +32,89 @@ public class RequestCaller {
         double w;
         String pol;
         List<Double> roots;
+        List<String> thirdRoots;
+        long callTime; long responseTime; long elapsedTime;
         do {
             procedure = sc.nextInt();
 
             switch (procedure) {
-                case 1:
+                case 1: // emptyReq
+                    callTime = System.nanoTime();
                     this.emptyReq();
+                    responseTime = System.nanoTime();
+                    elapsedTime = responseTime - callTime;
+                    System.out.println("Response delay: " + elapsedTime);
                     break;
-                case 2:
+                case 2: // Calculo de volume
                     System.out.println("Enter solid height, length and width:");
                     h = sc.nextInt();
                     l = sc.nextInt();
                     w = sc.nextInt();
+
+                    callTime = System.nanoTime();
 
                     double volume = this.geometricVolume(h, l, w);
+                    responseTime = System.nanoTime();
                     System.out.println(String.format("Volume = %f", volume));
+
+                    elapsedTime = responseTime - callTime;
+                    System.out.println("Response delay: " + (double)elapsedTime / 1000000 + " ms");
                     break;
-                case 3:
+                case 3: // Calculo de superficie
                     System.out.println("Enter solid height, length and width:");
                     h = sc.nextInt();
                     l = sc.nextInt();
                     w = sc.nextInt();
 
+                    callTime = System.nanoTime();
+
                     double area = this.geometricSurface(h, l, w);
+                    responseTime = System.nanoTime();
                     System.out.println(String.format("Surface area = %f", area));
+
+                    elapsedTime = responseTime - callTime;
+                    System.out.println("Response delay: " + (double)elapsedTime / 1000000 + " ms");
                     break;
-                case 4:
+                case 4: // Resolucao equacao de segundo grau
                     System.out.println("Enter polynome:");
                     pol = sc.next();
                     System.out.println(pol);
+
+                    callTime = System.nanoTime();
+
                     roots = this.secondDegreeSolve(pol);
+                    responseTime = System.nanoTime();
                     System.out.println(String.format("x1 = %f | x2 = %f", roots.get(0), roots.get(1)));
+
+                    elapsedTime = responseTime - callTime;
+                    System.out.println("Response delay: " + (double)elapsedTime / 1000000 + " ms");
                     break;
-                case 5:
+                case 5: // Resolucao equacao de terceiro grau
                     System.out.println("Enter polynome:");
                     pol = sc.next();
-                    roots = this.thirdDegreeSolve(pol);
-                    System.out.println(String.format("x1 = %f | x2 = %f | x3 = %f",
-                            roots.get(0), roots.get(1), roots.get(2)));
+
+                    callTime = System.nanoTime();
+
+                    thirdRoots = this.thirdDegreeSolve(pol);
+                    responseTime = System.nanoTime();
+                    System.out.println(String.format("x1 = %s | x2 = %s | x3 = %s",
+                            thirdRoots.get(0), thirdRoots.get(1), thirdRoots.get(2)));
+
+                    elapsedTime = responseTime - callTime;
+                    System.out.println("Response delay: " + (double)elapsedTime / 1000000 + " ms");
                     break;
-                case 6:
+                case 6: // Calculo de derivada
                     System.out.println("Enter polynome:");
                     pol = sc.next();
+
+                    callTime = System.nanoTime();
+
                     String derivative = this.polynomeDerivative(pol);
+                    responseTime = System.nanoTime();
                     System.out.println(String.format("Derivative: %s", derivative));
+
+                    elapsedTime = responseTime - callTime;
+                    System.out.println("Response delay: " + (double)elapsedTime / 1000000 + " ms");
                     break;
             }
 
@@ -119,10 +158,10 @@ public class RequestCaller {
         return roots;
     }
 
-    private List<Double> thirdDegreeSolve(String pol) {
+    private List<String> thirdDegreeSolve(String pol) {
         Polynome polynome = Polynome.newBuilder().setPolynome(pol).build();
         ThirdDegreeRoot result = this.stub.thirdDegreeSolve(polynome);
-        List<Double> roots = new ArrayList<>();
+        List<String> roots = new ArrayList<>();
         roots.add(result.getX1());
         roots.add(result.getX2());
         roots.add(result.getX3());

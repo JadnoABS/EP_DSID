@@ -69,8 +69,8 @@ public final class Proto {
       "\001 \001(\001\"\031\n\010IntValue\022\r\n\005value\030\001 \001(\005\"\034\n\010Poly" +
       "nome\022\020\n\010polynome\030\001 \001(\t\"*\n\020SecondDegreeRo" +
       "ot\022\n\n\002x1\030\001 \001(\001\022\n\n\002x2\030\002 \001(\001\"5\n\017ThirdDegre" +
-      "eRoot\022\n\n\002x1\030\001 \001(\001\022\n\n\002x2\030\002 \001(\001\022\n\n\002x3\030\003 \001(" +
-      "\001\"\007\n\005Empty2\301\002\n\004user\022&\n\010EmptyReq\022\014.proto." +
+      "eRoot\022\n\n\002x1\030\001 \001(\t\022\n\n\002x2\030\002 \001(\t\022\n\n\002x3\030\003 \001(" +
+      "\t\"\007\n\005Empty2\301\002\n\004user\022&\n\010EmptyReq\022\014.proto." +
       "Empty\032\014.proto.Empty\022.\n\017GeometricVolume\022\014" +
       ".proto.Solid\032\r.proto.Volume\022-\n\020Geometric" +
       "Surface\022\014.proto.Solid\032\013.proto.Area\022=\n\021Se" +

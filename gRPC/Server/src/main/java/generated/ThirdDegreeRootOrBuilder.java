@@ -8,20 +8,38 @@ public interface ThirdDegreeRootOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>double x1 = 1;</code>
+   * <code>string x1 = 1;</code>
    * @return The x1.
    */
-  double getX1();
+  java.lang.String getX1();
+  /**
+   * <code>string x1 = 1;</code>
+   * @return The bytes for x1.
+   */
+  com.google.protobuf.ByteString
+      getX1Bytes();
 
   /**
-   * <code>double x2 = 2;</code>
+   * <code>string x2 = 2;</code>
    * @return The x2.
    */
-  double getX2();
+  java.lang.String getX2();
+  /**
+   * <code>string x2 = 2;</code>
+   * @return The bytes for x2.
+   */
+  com.google.protobuf.ByteString
+      getX2Bytes();
 
   /**
-   * <code>double x3 = 3;</code>
+   * <code>string x3 = 3;</code>
    * @return The x3.
    */
-  double getX3();
+  java.lang.String getX3();
+  /**
+   * <code>string x3 = 3;</code>
+   * @return The bytes for x3.
+   */
+  com.google.protobuf.ByteString
+      getX3Bytes();
 }

@@ -45,9 +45,9 @@ message SecondDegreeRoot {
 }
 
 message ThirdDegreeRoot {
-  double x1 = 1;
-  double x2 = 2;
-  double x3 = 3;
+  string x1 = 1;
+  string x2 = 2;
+  string x3 = 3;
 }
 
 message Empty{
