@@ -1,0 +1,57 @@
+syntax = "proto3";
+package proto;
+
+option java_multiple_files = true;
+option java_package = "generated";
+option java_outer_classname = "Proto";
+
+service  user {
+  rpc EmptyReq(Empty) returns (Empty);
+
+  rpc GeometricVolume(Solid) returns (Volume);
+  rpc GeometricSurface(Solid) returns (Area);
+
+  rpc SecondDegreeSolve(Polynome) returns (SecondDegreeRoot);
+  rpc ThirdDegreeSolve(Polynome) returns (ThirdDegreeRoot);
+
+  rpc PolynomeDerivative(Polynome) returns (Polynome);
+
+  rpc Terminate(Empty) returns (Empty);
+}
+
+message Solid {
+  double height = 1;
+  double length = 2;
+  double width = 3;
+}
+
+message Area {
+  double area = 1;
+}
+
+message Volume {
+  double volume = 1;
+}
+
+message IntValue {
+  int32 value = 1;
+}
+
+message Polynome {
+  string polynome = 1;
+}
+
+message SecondDegreeRoot {
+  double x1 = 1;
+  double x2 = 2;
+}
+
+message ThirdDegreeRoot {
+  string x1 = 1;
+  string x2 = 2;
+  string x3 = 3;
+}
+
+message Empty{
+
+}
